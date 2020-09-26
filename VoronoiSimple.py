@@ -3,7 +3,9 @@ import bpy
 # TODO: bpy.data.materials["Material"].node_tree.nodes["Principled BSDF"]
 # TODO: bpy.data.materials.new("VoronoiSimple")
 
-mater = bpy.data.materials["Material"]
+mater = bpy.data.materials.new("VoronoiSimple")
+bpy.data.objects['Cube'].active_material = mater
+mater.use_nodes = True
 shade_bsdf = mater.node_tree.nodes.get("Principled BSDF")
 
 input_tex_coord = mater.node_tree.nodes.new("ShaderNodeTexCoord")
