@@ -31,8 +31,8 @@ class ADDONNAME_OT_my_op(bpy.types.Operator):
     bl_idname = "addonname.myop_operator"
     
     def execute(self, context):
-        def create_shader(name, color):
-            mater = bpy.data.materials.new(name)
+        def create_shader(set_name, set_color):
+            mater = bpy.data.materials.new(set_name)
             mater.use_nodes = True
             shade_bsdf = mater.node_tree.nodes.get("Principled BSDF")
 
@@ -45,6 +45,7 @@ class ADDONNAME_OT_my_op(bpy.types.Operator):
             conve_val_rgb = mater.node_tree.nodes.new("ShaderNodeValToRGB")
             conve_val_rgb.color_ramp.elements[0].position = 0.02
             conve_val_rgb.color_ramp.elements[1].position = 0.1
+            conve_val_rgb.color_ramp.elements[1].color = set_color
 
             vecto_bump = mater.node_tree.nodes.new("ShaderNodeBump")
 
